@@ -26,7 +26,6 @@ provide('searchText', searchText);
   height: 100vh;
   font-family: serif;
   line-height: 24px;
-  width: 100%;
 }
 .d-flex {
   display: flex;

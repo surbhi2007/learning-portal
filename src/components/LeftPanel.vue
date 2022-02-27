@@ -1,9 +1,11 @@
 <template>
-  <div class="px-2">
-    <span class="d-flex row"
+  <div class="p-2">
+    <label for="search">Search for keywords</label>
+    <span class="d-flex row py-2"
       ><div>&#128269;</div>
       <input
         type="text"
+        id="search"
         class="searchBar"
         v-model="searchText"
         placeholder="Filter Courses"
@@ -51,8 +53,11 @@ watch(selectedCategory, (newValue) => {
 </script>
 
 <style scoped>
-.px-2 {
-  padding: 0 16px;
+.py-2 {
+  padding: 16px 0;
+}
+.p-2 {
+  padding: 16px;
 }
 .searchBar {
   border: none;

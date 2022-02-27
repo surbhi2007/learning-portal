@@ -1,23 +1,30 @@
 <template>
-  <div
-    class="course-card m-3"
-    v-for="(course, index) in filteredSearchedCategories"
-    :key="index"
-  >
-    <div class="f-16">{{ course.title }}</div>
-    <div>{{ course.instructor_name }}</div>
-    <p v-html="course.description"></p>
-    <div class="bold">Pre-registration</div>
-    <div class="bold">
-      {{
-        getMonthYear(course.start_date) + " - " + getMonthYear(course.end_date)
-      }}
+  <div>
+    <h2 class="italic">
+      {{ filteredSearchedCategories.length + " courses open for registration" }}
+    </h2>
+    <div
+      class="course-card m-3"
+      v-for="(course, index) in filteredSearchedCategories"
+      :key="index"
+    >
+      <div class="f-16">{{ course.title }}</div>
+      <div>{{ course.instructor_name }}</div>
+      <p v-html="course.description"></p>
+      <div class="bold">Pre-registration</div>
+      <div class="bold">
+        {{
+          getMonthYear(course.start_date) +
+          " - " +
+          getMonthYear(course.end_date)
+        }}
+      </div>
+      <span class="italic">{{
+        calculateWeeks(course.start_date, course.end_date) +
+        ", " +
+        course.estimated_workload
+      }}</span>
     </div>
-    <span class="italic">{{
-      calculateWeeks(course.start_date, course.end_date) +
-      ", " +
-      course.estimated_workload
-    }}</span>
   </div>
 </template>
 
@@ -100,12 +107,12 @@ const getMonthYear = (date) => {
   padding: 12px;
   background-color: #fff;
   box-shadow: -3px -5px 6px 6px #fff;
-  width: auto;
+  width: 250px;
   height: auto;
   display: inline-block;
 }
 .course-card:hover {
- box-shadow: -3px -5px 6px 6px teal;
+  box-shadow: -3px -5px 6px 6px teal;
 }
 .m-3 {
   margin: 24px 24px;
@@ -118,5 +125,8 @@ const getMonthYear = (date) => {
 }
 .italic {
   font-style: italic;
+}
+h2 {
+  font-weight: 500;
 }
 </style>
