@@ -1,6 +1,13 @@
 <template>
   <div class="px-2">
-    <input type="text" class="searchBar" v-model="searchText" />
+    <span class="d-flex row"
+      ><div>&#128269;</div>
+      <input
+        type="text"
+        class="searchBar"
+        v-model="searchText"
+        placeholder="Filter Courses"
+    /></span>
     <div v-for="(category, index) in categories.data" :key="index">
       <input
         :id="category + index"
@@ -14,16 +21,20 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, watch, inject } from "vue";
 const categories = reactive({ data: [], error: null });
-const selectedCategory = ref("All");
-const searchText = ref("");
+
+const selectedCategory = inject("selectedCategory");
+const searchText = inject("searchText");
 
 onMounted(async () => {
   // to fetch categories
   try {
     const response = await fetch(
-      "https://frontend-hiring.appspot.com/all_categories?secret=HelloMars"
+      "https://frontend-hiring.appspot.com/all_categories?secret=HelloMars",
+      {
+        "Access-Control-Allow-Origin": "*",
+      }
     );
     const resp = await response.json();
     categories.data = [...JSON.parse(resp.payload), "All"].sort();
@@ -31,9 +42,15 @@ onMounted(async () => {
     categories.error = err;
   }
 });
+watch(searchText, (newValue) => {
+  searchText.value = newValue.toLowerCase();
+});
+watch(selectedCategory, (newValue) => {
+  selectedCategory.value = newValue;
+});
 </script>
 
-<style>
+<style scoped>
 .px-2 {
   padding: 0 16px;
 }

@@ -1,4 +1,5 @@
 # learning-portal
+This application is developed in vue 3 framework.
 
 ## Project setup
 ```
@@ -22,3 +23,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+

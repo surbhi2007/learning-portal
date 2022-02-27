@@ -1,22 +1,22 @@
 <template>
   <div class="d-flex row p-3">
       <left-panel />
-    <div class="d-flex">
+    <div class="d-flex mr-2">
       <right-panel />
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import LeftPanel from './components/LeftPanel'
 import RightPanel from './components/RightPanel'
+import { provide, ref } from 'vue';
 
- export default {
-   components: {
-     RightPanel,
-     LeftPanel,
-   }
- }
+const selectedCategory = ref("All");
+const searchText = ref("");
+
+provide('selectedCategory', selectedCategory);
+provide('searchText', searchText);
 
 </script>
 
@@ -24,8 +24,9 @@ import RightPanel from './components/RightPanel'
 #app {
   background-color: #8080802e;
   height: 100vh;
-  width: auto;
-  font-family: cursive;
+  font-family: serif;
+  line-height: 24px;
+  width: 100%;
 }
 .d-flex {
   display: flex;
@@ -33,35 +34,7 @@ import RightPanel from './components/RightPanel'
 .row {
   flex-direction: row;
 }
-.course-card {
-  border: 1px solid white;
-  padding: 12px;
-  background-color: #fff;
-  box-shadow: 3px 0px 0px 2px #fff;
-}
-.px-2 {
-  padding: 0 16px;
-}
-.p-3 {
-  padding: 24px;
-}
-.mx-2 {
-  margin: 0 16px;
-}
-.bold {
-  font-weight: 800;
-}
-.searchBar {
-  border: none;
-  background-color: inherit;
-  border-bottom: 2px solid black;
-  margin-bottom: 16px;
-  line-height: 20px;
-}
-input[type=text]:focus{
-  outline: none;
-}
-.f-16 {
-  font-size: 24px;
+.mr-2 {
+  margin-right: 16px;
 }
 </style>
